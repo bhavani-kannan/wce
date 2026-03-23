@@ -82,6 +82,7 @@ Confidence score: 0.89
     "score": 0.89
   }
 }
+```
 
 ## presentation_rules
 - start with working capital composition
