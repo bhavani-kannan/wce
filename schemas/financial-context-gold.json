@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "financial-context-gold",
+  "type": "object",
+  "required": [
+    "revenue",
+    "cogs",
+    "prior_revenue",
+    "prior_cogs",
+    "current_period_end_date",
+    "prior_period_end_date"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "revenue": {
+      "type": "number"
+    },
+    "cogs": {
+      "type": "number"
+    },
+    "prior_revenue": {
+      "type": "number"
+    },
+    "prior_cogs": {
+      "type": "number"
+    },
+    "current_period_end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "prior_period_end_date": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}
