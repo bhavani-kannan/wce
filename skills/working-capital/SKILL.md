@@ -203,7 +203,7 @@ required_datasets:
 - rule: no_action_assignment description: do not assign operational actions
 
 ## dependencies
-- required_inputs:
+### required_inputs:
 - receivables-output
 - payables-output
 - inventory-output
