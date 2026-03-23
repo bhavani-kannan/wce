@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "payables-output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "summary",
+    "payment_profile",
+    "issue_summary",
+    "vendor_concentration",
+    "confidence"
+  ],
+  "properties": {
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_open_payables",
+        "total_overdue_payables",
+        "overdue_percent_of_open_payables",
+        "payables_percent_of_cogs"
+      ],
+      "properties": {
+        "total_open_payables": {
+          "type": "number"
+        },
+        "total_overdue_payables": {
+          "type": "number"
+        },
+        "overdue_percent_of_open_payables": {
+          "type": "number"
+        },
+        "payables_percent_of_cogs": {
+          "type": "number"
+        }
+      }
+    },
+    "payment_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "not_due",
+        "optimal_payment_window",
+        "delayed",
+        "critical_delay"
+      ],
+      "properties": {
+        "not_due": {
+          "type": "number"
+        },
+        "optimal_payment_window": {
+          "type": "number"
+        },
+        "delayed": {
+          "type": "number"
+        },
+        "critical_delay": {
+          "type": "number"
+        }
+      }
+    },
+    "issue_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adjustment_or_credit",
+        "on_time",
+        "early_stage_delay",
+        "structural_delay",
+        "concentration_risk",
+        "critical_delay",
+        "unclassified"
+      ],
+      "properties": {
+        "adjustment_or_credit": {
+          "type": "number"
+        },
+        "on_time": {
+          "type": "number"
+        },
+        "early_stage_delay": {
+          "type": "number"
+        },
+        "structural_delay": {
+          "type": "number"
+        },
+        "concentration_risk": {
+          "type": "number"
+        },
+        "critical_delay": {
+          "type": "number"
+        },
+        "unclassified": {
+          "type": "number"
+        }
+      }
+    },
+    "vendor_concentration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_5_vendor_open_payables",
+        "top_5_vendor_percent_of_open_payables"
+      ],
+      "properties": {
+        "top_5_vendor_open_payables": {
+          "type": "number"
+        },
+        "top_5_vendor_percent_of_open_payables": {
+          "type": "number"
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score"
+      ],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}
