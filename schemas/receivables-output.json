@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "receivables-output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "summary",
+    "cash_profile",
+    "issue_summary",
+    "customer_concentration",
+    "confidence"
+  ],
+  "properties": {
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_open_receivables",
+        "total_overdue_receivables",
+        "overdue_percent_of_open_receivables",
+        "receivables_percent_of_revenue"
+      ],
+      "properties": {
+        "total_open_receivables": {
+          "type": "number"
+        },
+        "total_overdue_receivables": {
+          "type": "number"
+        },
+        "overdue_percent_of_open_receivables": {
+          "type": "number"
+        },
+        "receivables_percent_of_revenue": {
+          "type": "number"
+        }
+      }
+    },
+    "cash_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "not_due",
+        "immediate_recoverable",
+        "at_risk",
+        "critical"
+      ],
+      "properties": {
+        "not_due": {
+          "type": "number"
+        },
+        "immediate_recoverable": {
+          "type": "number"
+        },
+        "at_risk": {
+          "type": "number"
+        },
+        "critical": {
+          "type": "number"
+        }
+      }
+    },
+    "issue_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adjustment_or_credit",
+        "dispute",
+        "credit_issue",
+        "concentration_risk",
+        "collection_delay",
+        "unclassified"
+      ],
+      "properties": {
+        "adjustment_or_credit": {
+          "type": "number"
+        },
+        "dispute": {
+          "type": "number"
+        },
+        "credit_issue": {
+          "type": "number"
+        },
+        "concentration_risk": {
+          "type": "number"
+        },
+        "collection_delay": {
+          "type": "number"
+        },
+        "unclassified": {
+          "type": "number"
+        }
+      }
+    },
+    "customer_concentration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_5_customer_open_receivables",
+        "top_5_customer_percent_of_open_receivables"
+      ],
+      "properties": {
+        "top_5_customer_open_receivables": {
+          "type": "number"
+        },
+        "top_5_customer_percent_of_open_receivables": {
+          "type": "number"
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score"
+      ],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+} 
