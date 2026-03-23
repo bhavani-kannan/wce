@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "inventory-output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "summary",
+    "movement_profile",
+    "issue_summary",
+    "material_concentration",
+    "confidence"
+  ],
+  "properties": {
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_inventory_value",
+        "active_inventory_value",
+        "slow_inventory_value",
+        "non_moving_inventory_value",
+        "inventory_percent_of_cogs"
+      ],
+      "properties": {
+        "total_inventory_value": {
+          "type": "number"
+        },
+        "active_inventory_value": {
+          "type": "number"
+        },
+        "slow_inventory_value": {
+          "type": "number"
+        },
+        "non_moving_inventory_value": {
+          "type": "number"
+        },
+        "inventory_percent_of_cogs": {
+          "type": "number"
+        }
+      }
+    },
+    "movement_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active",
+        "slow",
+        "non_moving"
+      ],
+      "properties": {
+        "active": {
+          "type": "number"
+        },
+        "slow": {
+          "type": "number"
+        },
+        "non_moving": {
+          "type": "number"
+        }
+      }
+    },
+    "issue_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "healthy",
+        "slow_moving",
+        "non_moving",
+        "concentration_risk",
+        "unclassified"
+      ],
+      "properties": {
+        "healthy": {
+          "type": "number"
+        },
+        "slow_moving": {
+          "type": "number"
+        },
+        "non_moving": {
+          "type": "number"
+        },
+        "concentration_risk": {
+          "type": "number"
+        },
+        "unclassified": {
+          "type": "number"
+        }
+      }
+    },
+    "material_concentration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "top_10_material_inventory_value",
+        "top_10_material_percent_of_inventory_value"
+      ],
+      "properties": {
+        "top_10_material_inventory_value": {
+          "type": "number"
+        },
+        "top_10_material_percent_of_inventory_value": {
+          "type": "number"
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score"
+      ],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}
