@@ -83,7 +83,7 @@ Confidence score: 0.89
   }
 }
 
-##presentation_rules
+## presentation_rules
 - start with working capital composition
 - present DSO, DIO, DPO, and CCC immediately after
 - interpret CCC in terms of cash lock-up
@@ -95,13 +95,13 @@ Confidence score: 0.89
 - keep statements tied to structured values only
 - present confidence score at the end
 
-##prohibited_output_patterns
+## prohibited_output_patterns
 - do not introduce metrics not present in schema
 - do not assign operational actions
 - do not mix with raw dataset commentary
 - do not override domain-level outputs
 - do not speculate beyond available data
 
-##notes
+## notes
 - This file is a presentation example only.
 - It translates structured enterprise working capital output into CFO-readable insights without changing underlying data.
