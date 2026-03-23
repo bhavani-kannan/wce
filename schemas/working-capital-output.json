@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "working-capital-output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "working_capital",
+    "confidence"
+  ],
+  "properties": {
+    "working_capital": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "cash_conversion",
+        "cash_blockage",
+        "concentration",
+        "efficiency"
+      ],
+      "properties": {
+        "summary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "working_capital_value",
+            "receivables",
+            "inventory",
+            "payables"
+          ],
+          "properties": {
+            "working_capital_value": {
+              "type": "number"
+            },
+            "receivables": {
+              "type": "number"
+            },
+            "inventory": {
+              "type": "number"
+            },
+            "payables": {
+              "type": "number"
+            }
+          }
+        },
+        "cash_conversion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dso",
+            "dpo",
+            "dio",
+            "ccc"
+          ],
+          "properties": {
+            "dso": {
+              "type": "number"
+            },
+            "dpo": {
+              "type": "number"
+            },
+            "dio": {
+              "type": "number"
+            },
+            "ccc": {
+              "type": "number"
+            }
+          }
+        },
+        "cash_blockage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "receivables_at_risk",
+            "inventory_non_moving",
+            "payables_critical_delay"
+          ],
+          "properties": {
+            "receivables_at_risk": {
+              "type": "number"
+            },
+            "inventory_non_moving": {
+              "type": "number"
+            },
+            "payables_critical_delay": {
+              "type": "number"
+            }
+          }
+        },
+        "concentration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "receivables",
+            "payables",
+            "inventory"
+          ],
+          "properties": {
+            "receivables": {
+              "type": "number"
+            },
+            "payables": {
+              "type": "number"
+            },
+            "inventory": {
+              "type": "number"
+            }
+          }
+        },
+        "efficiency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "overdue_ratio",
+            "payable_delay_ratio"
+          ],
+          "properties": {
+            "overdue_ratio": {
+              "type": "number"
+            },
+            "payable_delay_ratio": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score"
+      ],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}
