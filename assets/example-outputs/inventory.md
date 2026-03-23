@@ -67,8 +67,9 @@ Confidence score: 0.89
     "score": 0.89
   }
 }
+```
 
-presentation_rules:
+## presentation_rules:
 - start with total inventory value
 - present movement profile immediately after
 - anchor inventory to COGS
@@ -79,13 +80,13 @@ presentation_rules:
 - keep statements tied to structured values only
 - present confidence score at the end
 
-prohibited_output_patterns
+## prohibited_output_patterns
 - do not compute or mention DIO here
 - do not assign liquidation or procurement actions
 - do not introduce metrics not present in schema
 - do not mix receivables or payables commentary
 - do not provide operational instructions
 
-notes
+## notes
 - This file is a presentation example only.
 - It translates structured inventory output into CFO-readable insights without changing underlying data.
