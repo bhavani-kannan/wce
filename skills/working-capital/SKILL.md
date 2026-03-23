@@ -196,7 +196,7 @@ required_datasets:
 }
 ```
 
-##constraints
+## constraints
 - rule: domain_outputs_only description: must consume only domain outputs, not raw datasets
 - rule: only_skill_for_ccc description: dso, dpo, dio, and ccc must be computed only in this skill
 - rule: no_line_item_logic description: do not perform any record-level classification
