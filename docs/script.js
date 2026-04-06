@@ -14,45 +14,84 @@ function switchTab(tab, btn) {
 const RESPONSES = {
     'delta-retail': {
         partial: {
-            cfo:   'Proceed with $1.08M partial collection from customer Delta Retail. Track remaining $720K separately with 7-day follow-up.',
-            agent: 'Collection initiated for $1.08M from customer Delta Retail. Owner aligned. Senior escalation not required. Follow-up scheduled on remaining $720K — Day 7 deadline set. Legal hold prepared as fallback if no movement.'
+            cfo:   'Proceed with $1.08M partial collection from Delta Retail. Track remaining $720K separately with 7-day follow-up.',
+            agent: 'Collection initiated for $1.08M from Delta Retail. Owner aligned. Senior escalation not required. Follow-up scheduled on remaining $720K — Day 7 deadline set. Legal hold prepared as fallback if no movement.'
         },
         full: {
-            cfo:   'Push for full $1.8M from customer Delta Retail. Escalate to their CFO office immediately.',
-            agent: 'Full $1.8M demand raised with customer Delta Retail. Escalated to their CFO via formal letter. 5-business-day response window set. Legal notice prepared as fallback. Senior approval obtained for escalation track.'
+            cfo:   'Push for full $1.8M from Delta Retail. Escalate to their CFO office immediately.',
+            agent: 'Full $1.8M demand raised with Delta Retail. Escalated to their CFO via formal letter. 5-business-day response window set. Legal notice prepared as fallback. Senior approval obtained for escalation track.'
         }
     },
     'orbis-tech': {
         hold: {
-            cfo:   'Place customer Orbis Tech on credit hold. Protect cash. Stop new shipment exposure.',
-            agent: 'Credit hold activated for customer Orbis Tech. $2.1M pipeline shipments paused. Formal notice sent per contract terms. AR team on daily follow-up. Legal escalation letter prepared. Account manager briefed on relationship risk.'
+            cfo:   'Place Orbis Tech on credit hold. Protect cash. Stop new shipment exposure.',
+            agent: 'Credit hold activated for Orbis Tech. $2.1M pipeline shipments paused. Formal notice sent per contract terms. AR team on daily follow-up. Legal escalation letter prepared. Account manager briefed on relationship risk.'
         },
         escalate: {
             cfo:   'CFO-level escalation first. 3-day window. Credit hold on standby if no response.',
-            agent: 'Direct CFO-to-CFO contact initiated with customer Orbis Tech. Demand letter sent. 3-day response window activated. Credit hold pre-approved and on standby. No new shipments sent until payment commitment received.'
+            agent: 'Direct CFO-to-CFO contact initiated with Orbis Tech. Demand letter sent. 3-day response window activated. Credit hold pre-approved and on standby. No new shipments sent until payment commitment received.'
         }
     },
     'pinnacle-foods': {
         split: {
-            cfo:   'Collect undisputed $620K from customer Pinnacle Foods now. Resolve $280K dispute separately via POD process.',
-            agent: 'Collection for $620K initiated from customer Pinnacle Foods (Invoices 79080, 79145). Dispute team assigned to Invoice 79210. Proof of delivery request sent to warehouse. Resolution target: 7 days. Remaining $280K tracked separately.'
+            cfo:   'Collect undisputed $620K from Pinnacle Foods now. Resolve $280K dispute separately via POD process.',
+            agent: 'Collection for $620K initiated from Pinnacle Foods (Invoices 79080, 79145). Dispute team assigned to Invoice 79210. Proof of delivery request sent to warehouse. Resolution target: 7 days. Remaining $280K tracked separately.'
         },
         full: {
-            cfo:   'Counter-dispute filed. Demand full $900K from customer Pinnacle Foods — our delivery records are clean.',
-            agent: 'Counter-dispute raised against customer Pinnacle Foods for Invoice 79210. POD documentation compiled from logistics and dispatch. Full $900K demand letter sent. Account manager escalated. Dispute resolution target: 10 days.'
+            cfo:   'Counter-dispute filed. Demand full $900K from Pinnacle Foods — our delivery records are clean.',
+            agent: 'Counter-dispute raised against Pinnacle Foods for Invoice 79210. POD documentation compiled from logistics and dispatch. Full $900K demand letter sent. Account manager escalated. Dispute resolution target: 10 days.'
         }
     },
     'summit-discount': {
         capture: {
-            cfo:   'Capture the discount. Pay vendor Summit Chemicals $1.872M within 5 days. $28.5K saving locked in.',
-            agent: 'Early payment of $1.872M to vendor Summit Chemicals scheduled for Day 3. Discount of $28.5K confirmed. Treasury cash runway verified — no liquidity risk. AP ledger updated. Vendor notified.'
+            cfo:   'Capture the discount. Pay Summit Chemicals $1.872M within 5 days. $28.5K saving locked in.',
+            agent: 'Early payment of $1.872M to Summit Chemicals scheduled for Day 3. Discount of $28.5K confirmed. Treasury cash runway verified — no liquidity risk. AP ledger updated. Vendor notified.'
         },
         pass: {
-            cfo:   'Pass on discount this cycle. Maintain standard payment date for vendor Summit Chemicals.',
-            agent: 'Standard payment cycle maintained. $1.9M to vendor Summit Chemicals cleared on Day 32. Discount opportunity logged for next billing cycle. Vendor relationship team will request same offer next invoice.'
+            cfo:   'Pass on discount this cycle. Maintain standard payment date for Summit Chemicals.',
+            agent: 'Standard payment cycle maintained. $1.9M to Summit Chemicals cleared on Day 32. Discount opportunity logged for next billing cycle. Vendor relationship team will request same offer next invoice.'
         }
     }
 };
+
+// ── Dispute action library ────────────────────────────────────
+const DISPUTE_RESPONSES = {
+    'pinnacle-pod': {
+        msg: 'POD request sent to Warehouse Manager @AmitShah at 07:45. Dispatch log records retrieved: full load of 840 units confirmed as loaded on 25 Mar 2026, Bill of Lading BL-7832. GRN from Pinnacle Foods has been requested. Expected response: 2–4 hours. @DispatchTeam has been looped in for follow-up.'
+    },
+    'pinnacle-counterclaim': {
+        msg: 'Formal counter-claim submitted to Pinnacle Foods Accounts Payable. Letter sent via email and registered post, referencing Dispatch Note DN-4421 and Bill of Lading BL-7832 as proof of full delivery. Full $280K demanded. 7-day response window set. @LegalTeam copied. Status updated in dispute tracker.'
+    },
+    'pinnacle-creditnote': {
+        msg: 'Credit note CN-2046 raised for $280K against Invoice 79210. Adjustment posted to AR ledger. Pinnacle Foods AP team notified. Dispute marked as resolved. Undisputed $620K collection on Invoices 79080 and 79145 continues on current timeline — no impact.'
+    },
+    'corelogistics-rejection': {
+        msg: 'Formal rejection notice sent to Core Logistics at 07:48. Letter references PO PO-7743 signed at $808K versus invoiced amount of $850K, and confirms no authorised change order exists for the $42K difference. Corrected invoice requested by Day 5. @ProcurementHead copied. Payment held pending resolution.'
+    },
+    'corelogistics-release': {
+        msg: 'Payment instruction raised for $808K (PO value). Attached formal dispute letter contesting the $42K overcharge. Routed for CFO approval — required on all disputed AP releases. Core Logistics notified that payment has been made at contracted value and the remaining $42K is formally contested. Dispute marked as open in AP ledger.'
+    },
+    'corelogistics-escalate': {
+        msg: 'Escalation raised to Procurement Head @ProcurementHead. Slack message sent, calendar hold set for 09:00 today. Summary shared: PO PO-7743 at $808K, invoice at $850K, no change order on file, Day 5 is the corrected-invoice deadline. Core Logistics account manager has been contacted directly. Outcome to be fed back into AP dispute tracker.'
+    }
+};
+
+/**
+ * Handles agent action on a dispute card.
+ */
+function resolveDispute(actionId) {
+    const res = DISPUTE_RESPONSES[actionId];
+    if (!res) return;
+
+    const responseEl = document.getElementById('dispute-response-' + actionId);
+    if (responseEl) {
+        responseEl.innerHTML = `
+            <div class="response-card" style="margin-top:8px;">
+                <div style="font-size:11px;color:#6ee7b7;margin-bottom:4px;font-style:normal;font-weight:700;">AGENT EXECUTING</div>
+                ${res.msg}
+            </div>`;
+    }
+}
 
 /**
  * Handles CFO decision selection on a card.
@@ -134,7 +173,7 @@ const SCENARIO_DATA = {
                 time:  '07:44',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>customer Delta Retail — Full $1.8M collected</strong><br>
+                html:  `<strong>Delta Retail &mdash; Full $1.8M collected</strong><br>
                         CFO-level escalation triggered. Parent entity cash confirmed ($42M). Hard demand letter served.
                         Full $1.8M cleared in 4 business days. <span class="text-green">+$1.8M vs. base case.</span>`
             },
@@ -144,8 +183,8 @@ const SCENARIO_DATA = {
                 time:  '07:45',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>customer Orbis Tech — Credit hold unlocked $1.3M</strong><br>
-                        Credit hold notice sent. customer Orbis Tech responded within 24h with full payment commitment.
+                html:  `<strong>Orbis Tech &mdash; Credit hold unlocked $1.3M</strong><br>
+                        Credit hold notice sent. Orbis Tech responded within 24h with full payment commitment.
                         $1.3M cleared Day 3. Shipment pipeline re-opened Day 4. <span class="text-green">+$1.3M.</span>`
             },
             {
@@ -154,8 +193,8 @@ const SCENARIO_DATA = {
                 time:  '07:46',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>customer Pinnacle Foods — Full $900K resolved</strong><br>
-                        POD confirmed full delivery. Counter-claim accepted by customer Pinnacle Foods.
+                html:  `<strong>Pinnacle Foods &mdash; Full $900K resolved</strong><br>
+                        POD confirmed full delivery. Counter-claim accepted by Pinnacle Foods.
                         Full $900K collected Day 6. Dispute closed. <span class="text-green">+$280K vs. base case.</span>`
             },
             {
@@ -164,7 +203,7 @@ const SCENARIO_DATA = {
                 time:  '07:47',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>vendor Summit Chemicals — $28.5K discount captured</strong><br>
+                html:  `<strong>Summit Chemicals &mdash; $28.5K discount captured</strong><br>
                         $1.872M paid by Day 5 within discount window. $28.5K saving locked in.
                         Annualised return on early payment: <span class="text-green">27%</span>. AP ledger updated.`
             },
@@ -174,7 +213,7 @@ const SCENARIO_DATA = {
                 time:  '07:48',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>customer Nexwave Retail — $800K confirmed Day 5</strong><br>
+                html:  `<strong>Nexwave Retail &mdash; $800K confirmed Day 5</strong><br>
                         Customer self-pay confirmed. No additional outreach needed. Cash cleared on schedule.`
             },
             {
@@ -245,7 +284,7 @@ const SCENARIO_DATA = {
                 time:  '07:44',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>customer Delta Retail — $1.08M partial collected</strong><br>
+                html:  `<strong>Delta Retail &mdash; $1.08M partial collected</strong><br>
                         Within approval level. Cleared in 3–5 days. Remaining $720K tracked with 7-day follow-up deadline.`
             },
             {
@@ -254,7 +293,7 @@ const SCENARIO_DATA = {
                 time:  '07:45',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>customer Nexwave Retail — $800K Day 5</strong><br>
+                html:  `<strong>Nexwave Retail &mdash; $800K Day 5</strong><br>
                         Customer committed. Payment expected on schedule.`
             },
             {
@@ -263,7 +302,7 @@ const SCENARIO_DATA = {
                 time:  '07:46',
                 icon:  'icon-good',
                 char:  '✓',
-                html:  `<strong>vendor Axis Packaging — $1.1M deferred to Day 45</strong><br>
+                html:  `<strong>Axis Packaging &mdash; $1.1M deferred to Day 45</strong><br>
                         Safe deferral within contract terms. No supply impact. Cash preserved for 7 additional days.`
             },
             {
@@ -328,7 +367,7 @@ const SCENARIO_DATA = {
                 time:  '07:44',
                 icon:  'icon-agent',
                 char:  '✗',
-                html:  `<strong>customer Delta Retail — No payment</strong><br>
+                html:  `<strong>Delta Retail &mdash; No payment</strong><br>
                         Escalation not pursued. $1.8M remains outstanding. <span class="text-red">Exposure grows to Day 102.</span>`
             },
             {
@@ -337,7 +376,7 @@ const SCENARIO_DATA = {
                 time:  '07:45',
                 icon:  'icon-agent',
                 char:  '✗',
-                html:  `<strong>customer Orbis Tech — No credit hold, shipments continue</strong><br>
+                html:  `<strong>Orbis Tech &mdash; No credit hold, shipments continue</strong><br>
                         $2.1M new shipments released without payment. Total exposure reaches <span class="text-red">$3.4M.</span>`
             },
             {
@@ -346,7 +385,7 @@ const SCENARIO_DATA = {
                 time:  '07:46',
                 icon:  'icon-agent',
                 char:  '✗',
-                html:  `<strong>vendor Summit Chemicals — Discount window missed</strong><br>
+                html:  `<strong>Summit Chemicals &mdash; Discount window missed</strong><br>
                         $28.5K saving forfeited. Full $1.9M payment due Day 32. Opportunity cost: $28.5K.`
             },
             {
@@ -387,7 +426,7 @@ const SCENARIO_DATA = {
                 char:  '⚠',
                 html:  `<strong>Bear Case Alert.</strong> Cash barely moves. $8.8M overdue AR by Day 7.
                         CCC deteriorates to 38d — 13 days above target. Liquidity floor: $38M. Current: $41.8M — <span class="text-orange">only $3.8M buffer.</span>
-                        <strong class="text-red">Immediate CFO action required</strong> on customer Orbis Tech, customer Delta Retail, and discount window.`
+                        <strong class="text-red">Immediate CFO action required</strong> on Orbis Tech, Delta Retail, and discount window.`
             }
         ]
     }
