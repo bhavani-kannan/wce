@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working Capital War Room</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════════════ -->
+<div class="header">
+    <div class="header-title">WORKING CAPITAL WAR ROOM</div>
+    <div class="header-meta">
+        Last refresh: <strong>07:42</strong> &nbsp;|&nbsp;
+        <span class="badge badge-green">4 actions complete</span>
+        <span class="badge badge-orange">4 decisions pending</span>
+        <span class="badge badge-blue">Opportunity: +$5.1M</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     KPI BAR
+═══════════════════════════════════════════════════════════ -->
+<div class="kpi-bar">
+    <div class="kpi">
+        <div class="kpi-label">Cash Position</div>
+        <div class="kpi-value text-blue">$42.3M</div>
+        <div class="kpi-trend up">▲ $2.1M vs yesterday</div>
+    </div>
+    <div class="kpi">
+        <div class="kpi-label">DSO</div>
+        <div class="kpi-value text-red">48d</div>
+        <div class="kpi-trend down">Target 38d &mdash; 10d gap</div>
+    </div>
+    <div class="kpi">
+        <div class="kpi-label">DPO</div>
+        <div class="kpi-value text-orange">41d</div>
+        <div class="kpi-trend neutral">Target 45d &mdash; 4d headroom</div>
+    </div>
+    <div class="kpi">
+        <div class="kpi-label">DIO</div>
+        <div class="kpi-value text-orange">27d</div>
+        <div class="kpi-trend neutral">Target 22d</div>
+    </div>
+    <div class="kpi">
+        <div class="kpi-label">CCC</div>
+        <div class="kpi-value text-red">34d</div>
+        <div class="kpi-trend down">Target 25d &mdash; 9d gap</div>
+    </div>
+    <div class="kpi">
+        <div class="kpi-label">Overdue AR</div>
+        <div class="kpi-value text-red">$6.2M</div>
+        <div class="kpi-trend down">▲ $0.4M vs last week</div>
+    </div>
+    <div class="kpi">
+        <div class="kpi-label">WC Opportunity</div>
+        <div class="kpi-value text-green">$5.1M</div>
+        <div class="kpi-trend up">Achievable this week</div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════════════ -->
+<div class="main">
+
+    <!-- ── 1. CASH FORECAST ─────────────────────────────────── -->
+    <div class="section">
+        <div class="section-title">7-Day Cash Forecast</div>
+        <div class="forecast-strip">
+            <div class="forecast-day">
+                <div class="day-label">Today</div>
+                <div class="day-value text-blue">$42.3M</div>
+                <div class="day-note text-gray">Actual</div>
+            </div>
+            <div class="forecast-day">
+                <div class="day-label">Day 2</div>
+                <div class="day-value text-green">$44.1M</div>
+                <div class="day-note text-green">+$1.8M inflows expected</div>
+            </div>
+            <div class="forecast-day">
+                <div class="day-label">Day 3</div>
+                <div class="day-value">$43.5M</div>
+                <div class="day-note text-red">&minus;$620K vendor PowerGrid</div>
+            </div>
+            <div class="forecast-day">
+                <div class="day-label">Day 5</div>
+                <div class="day-value text-green">$45.2M</div>
+                <div class="day-note text-green">+$1.7M customer inflows</div>
+            </div>
+            <div class="forecast-day">
+                <div class="day-label">Day 7 &mdash; Base</div>
+                <div class="day-value text-blue">$47.3M</div>
+                <div class="day-note text-gray">Standard scenario</div>
+            </div>
+            <div class="forecast-day">
+                <div class="day-label">Day 7 &mdash; Bull</div>
+                <div class="day-value text-green">$50.4M</div>
+                <div class="day-note text-green">All AR collected</div>
+            </div>
+            <div class="forecast-day">
+                <div class="day-label">Day 7 &mdash; Bear</div>
+                <div class="day-value text-red">$41.8M</div>
+                <div class="day-note text-red">No new collections</div>
+            </div>
+        </div>
+        <div class="small mt-8">Liquidity floor: $38M (30-day operating coverage). All scenarios above threshold. &nbsp;|&nbsp; CCC improvement potential: <strong class="text-green">9 days</strong> if bull case achieved this week.</div>
+    </div>
+
+    <!-- ── 2–5. TABBED WORKSPACE ────────────────────────────── -->
+    <div class="section" style="margin-bottom:0;">
+
+        <!-- Tab bar -->
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('ar',this)">
+                Receivables (AR)
+                <span class="tab-badge tab-badge-red">4 decisions</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('ap',this)">
+                Payables (AP)
+                <span class="tab-badge tab-badge-orange">1 decision</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('disputes',this)">
+                Active Disputes
+                <span class="tab-badge tab-badge-orange">$322K blocked</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('scenario',this)">
+                Scenario Modelling
+                <span class="tab-badge tab-badge-blue">3 scenarios</span>
+            </button>
+        </div>
+
+        <div class="tab-container">
+
+            <!-- ══ TAB: AR ══════════════════════════════════════ -->
+            <div id="tab-ar" class="tab-panel active">
+
+                <!-- AR Aging Buckets -->
+                <div class="card info" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent &middot; AR Snapshot 07:42</div>
+                    <div class="aging-grid">
+                        <div class="aging-bucket">
+                            <div class="bucket-label">0 &ndash; 30 days</div>
+                            <div class="bucket-value text-green">$9.8M</div>
+                            <div class="bucket-count">34 invoices &middot; Normal</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:61%;background:#22c55e;"></div></div>
+                        </div>
+                        <div class="aging-bucket">
+                            <div class="bucket-label">31 &ndash; 60 days</div>
+                            <div class="bucket-value text-orange">$3.1M</div>
+                            <div class="bucket-count">11 invoices &middot; Monitor</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:19%;background:#f97316;"></div></div>
+                        </div>
+                        <div class="aging-bucket">
+                            <div class="bucket-label">61 &ndash; 90 days</div>
+                            <div class="bucket-value text-red">$1.3M</div>
+                            <div class="bucket-count">5 invoices &middot; Act now</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:8%;background:#ef4444;"></div></div>
+                        </div>
+                        <div class="aging-bucket">
+                            <div class="bucket-label">90+ days</div>
+                            <div class="bucket-value text-red">$1.8M</div>
+                            <div class="bucket-count">3 invoices &middot; Critical</div>
+                            <div class="progress-bar"><div class="progress-fill" style="width:11%;background:#7f1d1d;"></div></div>
+                        </div>
+                    </div>
+                    <div class="small mt-8">Total AR: $16.0M &nbsp;&middot;&nbsp; Overdue (&gt;30 days): $6.2M &nbsp;&middot;&nbsp; 39% of AR is overdue &mdash; above acceptable threshold of 25%</div>
+                </div>
+
+                <!-- Priority Overdue Customers Table -->
+                <div class="card" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent &middot; Priority Overdue Customers</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Overdue</th>
+                                <th>Days</th>
+                                <th>Status</th>
+                                <th>Signal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>customer Delta Retail</strong></td>
+                                <td class="text-red">$1.8M</td>
+                                <td><span class="tag tag-red">95d</span></td>
+                                <td>Decision pending &#9660;</td>
+                                <td><span data-tooltip="Treasury filing: parent cash $42M. Six other vendors paid in last 5 days. Our payment deprioritized.">Deprioritizing us &#9888;</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>customer Orbis Tech</strong></td>
+                                <td class="text-red">$1.3M</td>
+                                <td><span class="tag tag-red">62d</span></td>
+                                <td>Credit hold decision &#9660;</td>
+                                <td><span data-tooltip="2nd consecutive breach. No response to 3 outreach attempts over 10 days. Phone calls unanswered.">Pattern repeat &#9888;</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>customer Pinnacle Foods</strong></td>
+                                <td class="text-orange">$900K</td>
+                                <td><span class="tag tag-orange">45d</span></td>
+                                <td>Dispute on $280K &#9660;</td>
+                                <td><span data-tooltip="$620K fully accepted on Invoices 79080, 79145. $280K disputed: short delivery claim on Invoice 79210.">Dispute blocking full payment</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>customer Nexwave Retail</strong></td>
+                                <td class="text-orange">$800K</td>
+                                <td><span class="tag tag-orange">38d</span></td>
+                                <td>Outreach in progress</td>
+                                <td><span data-tooltip="Responded to email. Committed to payment by Day 5.">Positive signal &#10003;</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>customer Brightline Corp</strong></td>
+                                <td class="text-gray">$300K</td>
+                                <td><span class="tag tag-gray">35d</span></td>
+                                <td>First overdue</td>
+                                <td><span data-tooltip="New customer. First payment cycle. Strong credit score. Low risk.">Low risk &#10003;</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="small mt-8">Remaining $0.1M overdue spread across 6 smaller accounts. No individual account &gt;$20K.</div>
+                </div>
+
+                <!-- DECISION 1 — customer Delta Retail -->
+                <div class="card decision" id="decision-delta-retail" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent 07:43 &middot; DECISION REQUIRED</div>
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">customer Delta Retail &mdash; Overdue Collection</div>
+                            <div class="mt-8">
+                                <span class="tag tag-red">95 days overdue</span>
+                                <span class="tag tag-orange">$1.8M at stake</span>
+                                <span class="tag tag-blue">No dispute on record</span>
+                            </div>
+                        </div>
+                        <div class="card-amount text-red">$1.8M</div>
+                    </div>
+                    <div style="font-size:13px;margin:8px 0;">
+                        <strong>Invoices:</strong>
+                        <span data-tooltip="Invoice 78421: $950K — due 72 days ago&#10;Invoice 78435: $850K — due 95 days ago">78421, 78435</span>
+                        &nbsp;&middot;&nbsp;
+                        <strong>Signals:</strong>
+                        <span class="signals">
+                            <span class="tag tag-green" data-tooltip="Source: Treasury filing accessed 06:00 today. Parent entity holds $42M cash.">Parent cash: $42M</span>
+                            <span class="tag tag-green" data-tooltip="Network payment data: 6 other vendors paid within last 5 days by customer Delta Retail.">Other vendors paid</span>
+                            <span class="tag tag-red" data-tooltip="Payment ranked low in their AP priority queue. No internal dispute registered on their side.">Deprioritizing us</span>
+                        </span>
+                    </div>
+                    <hr class="divider">
+                    <div style="font-size:13px;margin-bottom:8px;">
+                        <span data-tooltip="Historical: amounts at this threshold cleared in 3–5 days. Within current approval level. No senior sign-off needed."><strong class="text-blue">Option A &mdash; Collect $1.08M now</strong></span><br>
+                        <span class="small">Faster. Sits within current approval level. Remaining $720K tracked separately with 7-day deadline. Relationship preserved.</span>
+                    </div>
+                    <div style="font-size:13px;margin-bottom:10px;">
+                        <span data-tooltip="Requires senior approval. Average process delay: 20–30 days. Risk: relationship strain on a $12M annual account."><strong class="text-orange">Option B &mdash; Demand full $1.8M</strong></span><br>
+                        <span class="small">Higher value but slower. Escalation required. customer Delta Retail is a $12M annual account — relationship impact is real.</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-primary" onclick="decide('delta-retail','partial')">Collect $1.08M now</button>
+                        <button class="btn-secondary" onclick="decide('delta-retail','full')">Demand full $1.8M</button>
+                        <button class="btn-secondary" onclick="showQueryInput('delta-retail')">Request info</button>
+                    </div>
+                    <div id="query-delta-retail" class="input-row hidden">
+                        <input id="query-input-delta-retail" placeholder="Tag someone — e.g. @RaviKumar check payment priority status at customer Delta Retail"/>
+                        <button class="btn-secondary" onclick="sendQuery('delta-retail')">Send</button>
+                    </div>
+                    <div id="response-delta-retail"></div>
+                </div>
+
+                <!-- DECISION 2 — customer Orbis Tech Credit Hold -->
+                <div class="card decision" id="decision-orbis-tech" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent 07:44 &middot; DECISION REQUIRED</div>
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">customer Orbis Tech &mdash; Credit Hold Decision</div>
+                            <div class="mt-8">
+                                <span class="tag tag-red">62 days overdue</span>
+                                <span class="tag tag-red">2nd consecutive breach</span>
+                                <span class="tag tag-orange">$2.1M new shipments at risk</span>
+                            </div>
+                        </div>
+                        <div class="card-amount text-red">$1.3M</div>
+                    </div>
+                    <div style="font-size:13px;margin:8px 0;">
+                        <strong>History:</strong> Previous breach on Invoice 76190 ($800K, 58 days) resolved only after 2 email escalations.
+                        Current cycle: no response to 3 outreach attempts over 10 days. Phone calls unanswered.<br><br>
+                        <strong>Pipeline risk:</strong> $2.1M in orders are staged for delivery this week. If we continue shipping without payment, total exposure grows to <span class="text-red">$3.4M</span>.<br><br>
+                        <strong>Relationship:</strong> <span data-tooltip="customer Orbis Tech: $7.8M annual revenue. Losing this account = ~6% of total revenue. Contractual notice period: 30 days before legal.">Annual account worth $7.8M</span>. Credit hold triggers contractual notice.
+                    </div>
+                    <hr class="divider">
+                    <div style="font-size:13px;margin-bottom:8px;">
+                        <span data-tooltip="Stops new shipments immediately. Triggers 30-day contractual resolution window. Legal escalation if no response."><strong class="text-red">Option A &mdash; Place on credit hold immediately</strong></span><br>
+                        <span class="small">Stops exposure growing to $3.4M. Hard signal to customer. Risks $7.8M annual account if relationship breaks.</span>
+                    </div>
+                    <div style="font-size:13px;margin-bottom:10px;">
+                        <span data-tooltip="Direct CFO-to-CFO contact. 3-day window. Credit hold pre-approved and activated if no response."><strong class="text-orange">Option B &mdash; CFO escalation first (3-day window, then hold)</strong></span><br>
+                        <span class="small">One final escalation before credit hold. Maintains goodwill signal. May unlock payment without damaging relationship.</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-danger" onclick="decide('orbis-tech','hold')">Place Credit Hold Now</button>
+                        <button class="btn-warning" onclick="decide('orbis-tech','escalate')">CFO Escalation First</button>
+                        <button class="btn-secondary" onclick="showQueryInput('orbis-tech')">Request info</button>
+                    </div>
+                    <div id="query-orbis-tech" class="input-row hidden">
+                        <input id="query-input-orbis-tech" placeholder="Tag someone — e.g. @SarahAndrews latest from customer Orbis Tech relationship manager?"/>
+                        <button class="btn-secondary" onclick="sendQuery('orbis-tech')">Send</button>
+                    </div>
+                    <div id="response-orbis-tech"></div>
+                </div>
+
+                <!-- DECISION 3 — customer Pinnacle Foods Dispute -->
+                <div class="card decision" id="decision-pinnacle-foods" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent 07:45 &middot; DECISION REQUIRED</div>
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">customer Pinnacle Foods &mdash; Disputed Invoice</div>
+                            <div class="mt-8">
+                                <span class="tag tag-orange">45 days overdue</span>
+                                <span class="tag tag-green">$620K undisputed</span>
+                                <span class="tag tag-red">$280K disputed</span>
+                            </div>
+                        </div>
+                        <div class="card-amount text-orange">$900K</div>
+                    </div>
+                    <div style="font-size:13px;margin:8px 0;">
+                        <strong>Dispute:</strong> customer Pinnacle Foods claims short delivery on Invoice 79210 ($280K). They allege 18% quantity shortfall.
+                        Our logistics records show full dispatch. Proof of Delivery (POD) confirmation from warehouse is pending.<br><br>
+                        <strong>Undisputed ($620K):</strong> Invoices 79080 and 79145. Fully accepted, no objection raised by customer. Collectible immediately.
+                    </div>
+                    <hr class="divider">
+                    <div style="font-size:13px;margin-bottom:8px;">
+                        <span data-tooltip="Collect $620K now on Invoices 79080 and 79145. Handle $280K dispute separately via POD process. Cooperative approach."><strong class="text-green">Option A &mdash; Collect undisputed $620K now, resolve $280K separately</strong></span><br>
+                        <span class="small">Faster cash. Cooperative. Maintains goodwill with customer Pinnacle Foods while dispute resolves. $280K tracked with 7-day target.</span>
+                    </div>
+                    <div style="font-size:13px;margin-bottom:10px;">
+                        <span data-tooltip="Reject the dispute and demand full $900K with POD evidence. Strong position if delivery records confirm full shipment. Delay risk: 7–10 days."><strong class="text-orange">Option B &mdash; Counter-dispute, demand full $900K with POD evidence</strong></span><br>
+                        <span class="small">Full recovery if POD confirms complete delivery. Risk: full payment delayed a further 7–10 days while dispute processes.</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-success" onclick="decide('pinnacle-foods','split')">Collect $620K now</button>
+                        <button class="btn-secondary" onclick="decide('pinnacle-foods','full')">Counter-dispute for full $900K</button>
+                        <button class="btn-secondary" onclick="showQueryInput('pinnacle-foods')">Request info</button>
+                    </div>
+                    <div id="query-pinnacle-foods" class="input-row hidden">
+                        <input id="query-input-pinnacle-foods" placeholder="Tag someone — e.g. @DispatchTeam confirm POD for Invoice 79210 to customer Pinnacle Foods"/>
+                        <button class="btn-secondary" onclick="sendQuery('pinnacle-foods')">Send</button>
+                    </div>
+                    <div id="response-pinnacle-foods"></div>
+                </div>
+
+                <!-- Completed: Invoicing -->
+                <div class="card good" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent 07:46 &middot; COMPLETED</div>
+                    <strong>Invoicing release:</strong> <span data-tooltip="7 invoices across 4 customers. All validated against contracts and confirmed deliveries.">$1.9M released</span> &mdash; collection cycle started.
+                    <div class="small">Customers: customer Nexwave Retail ($0.8M), customer Brightline Corp ($0.6M), customer Aldgate Partners ($0.3M), customer Westfield Brands ($0.2M)</div>
+                </div>
+
+                <!-- Completed: Receivables outreach -->
+                <div class="card good">
+                    <div class="agent-label">Agent 07:47 &middot; COMPLETED</div>
+                    <strong>Receivables outreach:</strong> <span data-tooltip="Behaviour-model segmentation: payment likelihood, historical pattern, preferred contact channel.">$1.4M targeted this week</span> &mdash; outreach aligned to customer payment patterns.
+                    <div class="small">customer Nexwave Retail confirmed Day 5 payment. customer Brightline Corp acknowledged. Reminders sent to 6 additional accounts.</div>
+                </div>
+
+            </div><!-- /tab-ar -->
+
+            <!-- ══ TAB: AP ══════════════════════════════════════ -->
+            <div id="tab-ap" class="tab-panel">
+
+                <!-- AP Summary Table -->
+                <div class="card info" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent &middot; AP Snapshot 07:42</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Vendor</th>
+                                <th>Amount</th>
+                                <th>Due</th>
+                                <th>Terms</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>vendor Summit Chemicals</strong></td>
+                                <td>$1.9M</td>
+                                <td>Day 32</td>
+                                <td><span data-tooltip="Pay within 10 days: 1.5% discount = $28.5K saving. Annualised return: ~27%.">1.5/10 net 45 &#9889;</span></td>
+                                <td><span class="tag tag-orange">Decision pending &#9660;</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>vendor Axis Packaging</strong></td>
+                                <td>$1.1M</td>
+                                <td>Day 38 / limit Day 45</td>
+                                <td>Net 45</td>
+                                <td><span class="tag tag-green">Safely deferred to Day 45</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>vendor PowerGrid Supplies</strong></td>
+                                <td>$620K</td>
+                                <td>Day 3 &mdash; critical</td>
+                                <td>Net 30</td>
+                                <td><span class="tag tag-red">Must pay &mdash; production risk</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>vendor Core Logistics</strong></td>
+                                <td>$850K</td>
+                                <td>Day 12</td>
+                                <td>Dispute hold</td>
+                                <td><span class="tag tag-yellow">Overcharge $42K &mdash; on hold</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>vendor Meridian Raw</strong></td>
+                                <td>$470K</td>
+                                <td>Day 20</td>
+                                <td>Net 30</td>
+                                <td><span class="tag tag-gray">On schedule</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="small mt-8">Total AP outstanding: $4.94M &nbsp;&middot;&nbsp; Cash conserved via safe AP deferral: $1.1M &nbsp;&middot;&nbsp; Cash at risk of overpayment: $42K (vendor Core Logistics)</div>
+                </div>
+
+                <!-- DECISION 4 — vendor Summit Chemicals Early Pay Discount -->
+                <div class="card decision" id="decision-summit-discount" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent 07:48 &middot; DECISION REQUIRED</div>
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">vendor Summit Chemicals &mdash; Early Payment Discount</div>
+                            <div class="mt-8">
+                                <span class="tag tag-green">Save $28.5K</span>
+                                <span class="tag tag-blue">5-day window</span>
+                                <span class="tag tag-gray">Cash outflow: $1.9M early</span>
+                            </div>
+                        </div>
+                        <div class="card-amount text-green">$28.5K</div>
+                    </div>
+                    <div style="font-size:13px;margin:8px 0;">
+                        <strong>Offer:</strong> vendor Summit Chemicals offers <span data-tooltip="Standard early payment incentive. Pay $1.872M in 10 days instead of $1.9M in 32 days. Saving: $28.5K.">1.5% discount</span> if full invoice cleared within 10 days (5 days remaining in window).<br><br>
+                        <strong>Cash check:</strong> Current position $42.3M. Paying $1.9M early leaves $40.4M &mdash; <span class="text-green">no liquidity risk.</span><br>
+                        <strong>Annualised return on discount:</strong> <span class="text-green">~27% &mdash; highly attractive vs. cost of borrowing.</span>
+                    </div>
+                    <hr class="divider">
+                    <div style="font-size:13px;margin-bottom:8px;">
+                        <span data-tooltip="Pay $1.872M within 5 days. Lock in $28.5K saving. Cash runway comfortable. Builds vendor relationship."><strong class="text-green">Option A &mdash; Capture discount, pay vendor Summit Chemicals $1.872M by Day 5</strong></span><br>
+                        <span class="small">Effective annualised return ~27%. Strengthens early-pay relationship with vendor Summit Chemicals for future cycles.</span>
+                    </div>
+                    <div style="font-size:13px;margin-bottom:10px;">
+                        <span data-tooltip="Pay full $1.9M on Day 32. Preserve cash for 22 more days."><strong class="text-orange">Option B &mdash; Pass this cycle, standard payment on Day 32</strong></span><br>
+                        <span class="small">Preserves $1.9M for 22 additional days. Request vendor Summit Chemicals extend same offer on next invoice cycle.</span>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-success" onclick="decide('summit-discount','capture')">Capture $28.5K Discount</button>
+                        <button class="btn-secondary" onclick="decide('summit-discount','pass')">Pass this cycle</button>
+                    </div>
+                    <div id="response-summit-discount"></div>
+                </div>
+
+                <!-- Completed: Safe AP deferral -->
+                <div class="card good" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent 07:49 &middot; COMPLETED</div>
+                    <strong>Safe AP deferral:</strong> <span data-tooltip="AP ledger: vendor Axis Packaging. Due Day 38 of 45-day terms. Deferred to Day 45. No penalty clause triggered. Supply chain confirmed unaffected.">$1.1M deferred to Day 45 for vendor Axis Packaging</span> &mdash; no supply impact and no penalty.
+                </div>
+
+                <!-- Risk: vendor PowerGrid must pay -->
+                <div class="card risk" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent 07:50 &middot; CRITICAL &mdash; PAYMENT LOCKED</div>
+                    <strong>vendor PowerGrid Supplies &mdash; $620K must be paid by Day 3</strong><br>
+                    <span data-tooltip="Production Line 3 depends entirely on vendor PowerGrid Supplies components. Any delay = 4–6 day line stoppage. Estimated revenue impact: $1.8M.">
+                        Delay risk: Line 3 stoppage &mdash; <span class="text-red">$1.8M revenue impact</span>. Payment <strong>locked in</strong> for Day 3.
+                    </span>
+                    <div class="small">Treasury confirmed funds reserved. No CFO action needed.</div>
+                </div>
+
+                <!-- Warning: vendor Core Logistics overcharge -->
+                <div class="card warning">
+                    <div class="agent-label">Agent 07:51 &middot; DISPUTE IN PROGRESS</div>
+                    <strong>vendor Core Logistics &mdash; Invoice overcharge $42K</strong><br>
+                    <span data-tooltip="PO value: $808K. Invoice received: $850K. Discrepancy: $42K. No authorised change order on file.">
+                        $850K invoice holds a <span class="text-orange">$42K overcharge vs. PO $808K</span>. Payment held pending corrected invoice from vendor Core Logistics.
+                    </span>
+                    <div class="small">AP team following up directly. Revised invoice expected by Day 5. No supply risk within 12-day payment window.</div>
+                </div>
+
+            </div><!-- /tab-ap -->
+
+            <!-- ══ TAB: DISPUTES ════════════════════════════════ -->
+            <div id="tab-disputes" class="tab-panel">
+
+                <div class="card" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent &middot; Dispute Tracker 07:42</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Party</th>
+                                <th>Direction</th>
+                                <th>Amount Blocked</th>
+                                <th>Days Open</th>
+                                <th>Nature</th>
+                                <th>Owner</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>customer Pinnacle Foods</strong></td>
+                                <td><span class="tag tag-green">AR</span></td>
+                                <td class="text-orange">$280K</td>
+                                <td>12 days</td>
+                                <td>Short delivery claim — Invoice 79210</td>
+                                <td>@DispatchTeam</td>
+                                <td><span class="tag tag-orange">POD pending</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>vendor Core Logistics</strong></td>
+                                <td><span class="tag tag-red">AP</span></td>
+                                <td class="text-orange">$42K</td>
+                                <td>5 days</td>
+                                <td>Overcharge vs. PO $808K</td>
+                                <td>@APTeam</td>
+                                <td><span class="tag tag-orange">Revised invoice awaited</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="small mt-8">
+                        2 active disputes &nbsp;&middot;&nbsp; Total cash blocked: $322K &nbsp;&middot;&nbsp; AR dispute (customer): $280K &nbsp;&middot;&nbsp; AP dispute (vendor): $42K &nbsp;&middot;&nbsp; Target resolution: 7 days
+                    </div>
+                </div>
+
+                <div class="card info">
+                    <div class="agent-label">Agent &middot; Resolution Paths</div>
+                    <div style="font-size:13px;">
+                        <strong class="text-orange">customer Pinnacle Foods — $280K (Invoice 79210):</strong><br>
+                        POD request submitted to warehouse. Logistics dispatch records compiled. If delivery confirmed, counter-claim issued within 24h. If shortfall confirmed, credit note raised and $280K written off from AR. Decision on full collection vs. split locked to AR tab.
+                        <hr class="divider">
+                        <strong class="text-orange">vendor Core Logistics — $42K overcharge:</strong><br>
+                        AP team formally rejected the $850K invoice. Corrected invoice ($808K) expected from vendor Core Logistics by Day 5. If not received, payment released at PO value ($808K) with formal dispute letter. No supply disruption risk within 12-day payment window.
+                    </div>
+                </div>
+
+            </div><!-- /tab-disputes -->
+
+            <!-- ══ TAB: SCENARIO ════════════════════════════════ -->
+            <div id="tab-scenario" class="tab-panel">
+
+                <div class="card" style="margin-bottom:10px;">
+                    <div class="agent-label">Agent &middot; Cash Scenario Analysis</div>
+                    <div class="scenario-grid">
+                        <div class="scenario-card" id="scenario-card-bull">
+                            <div class="scenario-label">Bull Case</div>
+                            <div class="scenario-cash text-green">$50.4M</div>
+                            <div class="scenario-detail">All overdue AR collected. Early pay discount captured from vendor Summit Chemicals. DSO improves to 42 days. CCC drops to 28 days.</div>
+                            <button class="btn-success" style="margin-top:10px;width:100%;font-size:12px;" onclick="runScenario('bull')">Run Bull Simulation</button>
+                        </div>
+                        <div class="scenario-card" id="scenario-card-base">
+                            <div class="scenario-label">Base Case</div>
+                            <div class="scenario-cash text-blue">$47.3M</div>
+                            <div class="scenario-detail">customer Delta Retail partial collected. customer Nexwave Retail pays Day 5. vendor Axis Packaging deferred to Day 45. Standard AR outreach converts.</div>
+                            <button class="btn-primary" style="margin-top:10px;width:100%;font-size:12px;" onclick="runScenario('base')">Run Base Simulation</button>
+                        </div>
+                        <div class="scenario-card" id="scenario-card-bear">
+                            <div class="scenario-label">Bear Case</div>
+                            <div class="scenario-cash text-red">$41.8M</div>
+                            <div class="scenario-detail">No new AR collections. All AP paid on standard schedule. Both disputes remain open. CCC deteriorates to 38 days.</div>
+                            <button class="btn-danger" style="margin-top:10px;width:100%;font-size:12px;" onclick="runScenario('bear')">Run Bear Simulation</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live scenario stream is injected here -->
+                <div id="scenario-stream-container"></div>
+
+            </div><!-- /tab-scenario -->
+
+        </div><!-- /tab-container -->
+    </div><!-- /section tabs -->
+
+    <!-- ── 6. AGENT ACTIVITY LOG ─────────────────────────── -->
+    <div class="section">
+        <div class="section-title">Agent Activity &mdash; Completed Actions Today</div>
+        <div class="card good">
+            <div class="agent-label">07:42 &mdash; Invoicing</div>
+            $1.9M in validated invoices released across 4 customers. Collection cycle initiated. All validated against contracts and confirmed deliveries.
+        </div>
+        <div class="card good">
+            <div class="agent-label">07:43 &mdash; Receivables Outreach</div>
+            $1.4M targeted this week. Behaviour-model outreach executed. customer Nexwave Retail confirmed Day 5 payment. 6 reminder sequences activated.
+        </div>
+        <div class="card good">
+            <div class="agent-label">07:44 &mdash; AP Optimisation</div>
+            vendor Axis Packaging $1.1M deferred safely to Day 45 within contract terms. No supply chain or penalty impact confirmed.
+        </div>
+        <div class="card good">
+            <div class="agent-label">07:45 &mdash; Critical AP Locked</div>
+            vendor PowerGrid Supplies $620K scheduled for Day 3. Production Line 3 continuity confirmed. Revenue risk of $1.8M avoided.
+        </div>
+    </div>
+
+</div><!-- /main -->
+
+<script src="script.js"></script>
+</body>
+</html>
