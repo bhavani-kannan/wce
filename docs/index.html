@@ -67,47 +67,126 @@
 ═══════════════════════════════════════════════════════════ -->
 <div class="main">
 
-    <!-- ── 1. CASH FORECAST ─────────────────────────────────── -->
+    <!-- ── 1. CASH POSITION PROJECTION ──────────────────────── -->
     <div class="section">
-        <div class="section-title">7-Day Cash Forecast</div>
+        <div class="section-title" style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+            7-Day Cash Position &mdash; Direct Method
+            <span style="font-size:11px;color:#4b5563;font-weight:400;text-transform:none;letter-spacing:0;">Running balance of scheduled outflows + per-customer weighted inflows &mdash; Day 7 shows three endpoint tiers</span>
+        </div>
         <div class="forecast-strip">
-            <div class="forecast-day">
-                <div class="day-label">Today</div>
+
+            <!-- TODAY -->
+            <div class="forecast-day" style="border-left:3px solid #3b82f6;">
+                <div class="day-label" style="color:#60a5fa;font-weight:700;">Today &mdash; Actual</div>
                 <div class="day-value text-blue">$42.3M</div>
-                <div class="day-note text-gray">Actual</div>
+                <div class="day-note text-gray">Confirmed bank balance</div>
+                <div class="day-note text-gray" style="font-size:12px;margin-top:4px;"><span data-tooltip="Minimum cash balance the business must hold for 30-day operating coverage. Set at $38M. Headroom = Actual &minus; Floor.">Floor headroom</span>: <strong class="text-green">+$4.3M</strong></div>
             </div>
-            <div class="forecast-day">
-                <div class="day-label">Day 2</div>
-                <div class="day-value text-green">$44.1M</div>
-                <div class="day-note text-green">+$1.8M inflows expected</div>
+
+            <!-- DAY 2: AR inflows -->
+            <div class="forecast-day" style="border-left:3px solid #22c55e;">
+                <div class="day-label">Day 2 &mdash; AR Inflows</div>
+                <div class="day-value text-green">$44.0M</div>
+                <div class="day-note text-green">&#9650; $1.7M collected</div>
+                <div class="day-note text-gray" style="font-size:12px;margin-top:4px;">
+                    Nexwave $1.1M <span class="tag tag-green" style="font-size:10px;padding:1px 5px;">confirmed</span><br>
+                    Meridian $0.6M <span class="tag tag-blue" style="font-size:10px;padding:1px 5px;">92% probable</span>
+                </div>
             </div>
-            <div class="forecast-day">
-                <div class="day-label">Day 3</div>
-                <div class="day-value">$43.5M</div>
-                <div class="day-note text-red">&minus;$620K vendor PowerGrid</div>
+
+            <!-- DAY 3: major outflow day -->
+            <div class="forecast-day" style="border-left:3px solid #ef4444;background:#130a0a;">
+                <div class="day-label" style="color:#f87171;font-weight:700;">Day 3 &mdash; Tightest Day &#9660;</div>
+                <div class="day-value text-red">$41.7M</div>
+                <div class="day-note text-red">&#9660; $2.3M outflows locked</div>
+                <div class="day-note text-gray" style="font-size:12px;margin-top:4px;">
+                    Payroll $1.68M <span class="tag tag-red" style="font-size:10px;padding:1px 5px;">locked</span><br>
+                    PowerGrid $0.62M <span class="tag tag-red" style="font-size:10px;padding:1px 5px;">locked</span><br>
+                    <span data-tooltip="Minimum cash balance the business must hold for 30-day operating coverage. Set at $38M. Headroom = Actual &minus; Floor." style="color:#f87171;">Floor headroom: $3.7M</span>
+                </div>
             </div>
-            <div class="forecast-day">
-                <div class="day-label">Day 5</div>
-                <div class="day-value text-green">$45.2M</div>
-                <div class="day-note text-green">+$1.7M customer inflows</div>
+
+            <!-- DAY 5: AR inflows -->
+            <div class="forecast-day" style="border-left:3px solid #22c55e;">
+                <div class="day-label">Day 5 &mdash; AR Inflows</div>
+                <div class="day-value text-green">$43.1M</div>
+                <div class="day-note text-green">&#9650; $1.4M collected</div>
+                <div class="day-note text-gray" style="font-size:12px;margin-top:4px;">
+                    SkyNet $0.8M <span class="tag tag-green" style="font-size:10px;padding:1px 5px;">confirmed</span><br>
+                    Frost $0.38M <span class="tag tag-blue" style="font-size:10px;padding:1px 5px;">78% probable</span><br>
+                    Pinnacle $0.22M <span class="tag tag-orange" style="font-size:10px;padding:1px 5px;">30% at-risk</span>
+                </div>
             </div>
-            <div class="forecast-day">
-                <div class="day-label">Day 7 &mdash; Base</div>
-                <div class="day-value text-blue">$47.3M</div>
-                <div class="day-note text-gray">Standard scenario</div>
+
+            <!-- DAY 7: COMMITTED endpoint -->
+            <div class="forecast-day" style="border-left:3px solid #6b7280;">
+                <div class="day-label" style="font-weight:700;">Day 7 &mdash; Committed</div>
+                <div class="day-value" style="color:#9ca3af;">$41.5M</div>
+                <div class="day-note text-gray">Confirmed AR only</div>
+                <div class="day-note text-gray" style="font-size:12px;margin-top:4px;">
+                    All scheduled AP cleared<br>
+                    At-risk AR <em>excluded</em><br>
+                    <span style="color:#f87171;">Net weekly cash flow: &minus;$0.8M</span>
+                </div>
             </div>
-            <div class="forecast-day">
-                <div class="day-label">Day 7 &mdash; Bull</div>
-                <div class="day-value text-green">$50.4M</div>
-                <div class="day-note text-green">All AR collected</div>
+
+            <!-- DAY 7: PROBABLE endpoint -->
+            <div class="forecast-day" style="border-left:3px solid #3b82f6;">
+                <div class="day-label" style="font-weight:700;">Day 7 &mdash; Probable</div>
+                <div class="day-value text-blue">$42.8M</div>
+                <div class="day-note text-blue">+$1.3M on-terms AR</div>
+                <div class="day-note text-gray" style="font-size:12px;margin-top:4px;">
+                    Per-customer pay-rate applied<br>
+                    Tracks if customers pay to history<br>
+                    <span style="color:#9ca3af;">Net weekly cash flow: +$0.5M</span>
+                </div>
             </div>
-            <div class="forecast-day">
-                <div class="day-label">Day 7 &mdash; Bear</div>
-                <div class="day-value text-red">$41.8M</div>
-                <div class="day-note text-red">No new collections</div>
+
+            <!-- DAY 7: STRETCH endpoint -->
+            <div class="forecast-day" style="border-left:3px solid #22c55e;">
+                <div class="day-label" style="font-weight:700;">Day 7 &mdash; Stretch</div>
+                <div class="day-value text-green">$44.5M</div>
+                <div class="day-note text-green">+$1.7M agent-accelerated</div>
+                <div class="day-note text-gray" style="font-size:12px;margin-top:4px;">
+                    Delta partial $0.9M nudged<br>
+                    Orbis interim $0.5M<br>
+                    Others $0.3M early<br>
+                    <span style="color:#6ee7b7;">Requires AR decisions now</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tier legend + basis note -->
+        <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;align-items:flex-start;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;">
+                <span style="display:inline-flex;align-items:center;gap:4px;color:#9ca3af;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:#22c55e;display:inline-block;"></span>
+                    <strong>Confirmed</strong> — customer has stated a payment date (include 100%)
+                </span>
+                <span style="display:inline-flex;align-items:center;gap:4px;color:#9ca3af;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:#3b82f6;display:inline-block;"></span>
+                    <strong>Probable</strong> — within terms + clean pay history (80–95%)
+                </span>
+                <span style="display:inline-flex;align-items:center;gap:4px;color:#9ca3af;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:#f97316;display:inline-block;"></span>
+                    <strong>At-Risk</strong> — overdue or disputed, haircut 20–40%
+                </span>
+                <span style="display:inline-flex;align-items:center;gap:4px;color:#9ca3af;">
+                    <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;display:inline-block;"></span>
+                    <strong>Locked AP</strong> — you control timing; payroll &amp; contracted vendor payments
+                </span>
+                <span style="display:inline-flex;align-items:center;gap:4px;color:#9ca3af;">
+                    <span style="width:10px;height:10px;border-radius:2px;background:#1f2937;border:1px solid #374151;display:inline-block;"></span>
+                    <strong>Floor headroom</strong> — buffer above the $38M liquidity floor (minimum 30-day operating cash). Shown at each day to signal how close the position comes to the constraint.
+                </span>
             </div>
         </div>
-        <div class="small mt-8">Liquidity floor: $38M (30-day operating coverage). All scenarios above threshold. &nbsp;|&nbsp; CCC improvement potential: <strong class="text-green">9 days</strong> if bull case achieved this week.</div>
+        <div class="small mt-8">
+            <strong class="text-red">&#9888; Key insight:</strong> Day 7 Committed shows a <em>net weekly cash flow of &minus;$0.8M</em> &mdash; outflows (payroll + AP) exceed confirmed inflows. Probable recovers to +$0.5M; Stretch to +$2.2M if agent-accelerated collections land.
+            Stretch requires the AR decisions in this War Room to land <em>this week</em>.
+            &nbsp;&middot;&nbsp; Liquidity floor: <strong>$38M</strong> (30-day operating coverage) &nbsp;&middot;&nbsp; Tightest point: Day 3 at $41.7M &nbsp;&middot;&nbsp; All tiers above floor
+        </div>
     </div>
 
     <!-- ── 2–5. TABBED WORKSPACE ────────────────────────────── -->
@@ -122,6 +201,10 @@
             <button class="tab-btn" onclick="switchTab('ap',this)">
                 Payables (AP)
                 <span class="tab-badge tab-badge-orange">1 decision</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('activity',this)">
+                Activity Log
+                <span class="tab-badge tab-badge-green">4 completed</span>
             </button>
             <button class="tab-btn" onclick="switchTab('disputes',this)">
                 Active Disputes
@@ -543,6 +626,26 @@
 
             </div><!-- /tab-disputes -->
 
+            <!-- ══ TAB: ACTIVITY LOG ═════════════════════════════ -->
+            <div id="tab-activity" class="tab-panel">
+                <div class="card good">
+                    <div class="agent-label">07:42 &mdash; Invoicing</div>
+                    $1.9M in validated invoices released across 4 customers. Collection cycle initiated. All validated against contracts and confirmed deliveries.
+                </div>
+                <div class="card good">
+                    <div class="agent-label">07:43 &mdash; Receivables Outreach</div>
+                    $1.4M targeted this week. Behaviour-model outreach executed. customer Nexwave Retail confirmed Day 5 payment. 6 reminder sequences activated.
+                </div>
+                <div class="card good">
+                    <div class="agent-label">07:44 &mdash; AP Optimisation</div>
+                    vendor Axis Packaging $1.1M deferred safely to Day 45 within contract terms. No supply chain or penalty impact confirmed.
+                </div>
+                <div class="card good">
+                    <div class="agent-label">07:45 &mdash; Critical AP Locked</div>
+                    vendor PowerGrid Supplies $620K scheduled for Day 3. Production Line 3 continuity confirmed. Revenue risk of $1.8M avoided.
+                </div>
+            </div><!-- /tab-activity -->
+
             <!-- ══ TAB: SCENARIO ════════════════════════════════ -->
             <div id="tab-scenario" class="tab-panel">
 
@@ -578,26 +681,7 @@
         </div><!-- /tab-container -->
     </div><!-- /section tabs -->
 
-    <!-- ── 6. AGENT ACTIVITY LOG ─────────────────────────── -->
-    <div class="section">
-        <div class="section-title">Agent Activity &mdash; Completed Actions Today</div>
-        <div class="card good">
-            <div class="agent-label">07:42 &mdash; Invoicing</div>
-            $1.9M in validated invoices released across 4 customers. Collection cycle initiated. All validated against contracts and confirmed deliveries.
-        </div>
-        <div class="card good">
-            <div class="agent-label">07:43 &mdash; Receivables Outreach</div>
-            $1.4M targeted this week. Behaviour-model outreach executed. customer Nexwave Retail confirmed Day 5 payment. 6 reminder sequences activated.
-        </div>
-        <div class="card good">
-            <div class="agent-label">07:44 &mdash; AP Optimisation</div>
-            vendor Axis Packaging $1.1M deferred safely to Day 45 within contract terms. No supply chain or penalty impact confirmed.
-        </div>
-        <div class="card good">
-            <div class="agent-label">07:45 &mdash; Critical AP Locked</div>
-            vendor PowerGrid Supplies $620K scheduled for Day 3. Production Line 3 continuity confirmed. Revenue risk of $1.8M avoided.
-        </div>
-    </div>
+
 
 </div><!-- /main -->
 
