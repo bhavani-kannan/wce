@@ -209,6 +209,61 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
 }
 .trace-link:hover { color: #93c5fd; }
 
+/* ── Workflow status chips ───────────────────────────────── */
+.wf-status {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+.wf-pending  { background: #7c2d12; color: #fdba74; }
+.wf-staged   { background: #1e3a5f; color: #93c5fd; }
+.wf-active   { background: #064e3b; color: #6ee7b7; }
+.wf-dormant  { background: #1f2937; color: #9ca3af; }
+.wf-blocked  { background: #7f1d1d; color: #fca5a5; }
+
+/* ── Workflow sync note ──────────────────────────────────── */
+.wf-sync-note {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #1f2937;
+    font-size: 11px;
+    color: #4b5563;
+}
+
+/* ── Global refresh button ───────────────────────────────── */
+.refresh-btn {
+    background: none;
+    border: 1px solid #374151;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.refresh-btn:hover { color: #93c5fd; border-color: #60a5fa; background: none; }
+.refresh-btn.spinning {
+    animation: btn-spin 0.8s linear infinite;
+    color: #60a5fa;
+    border-color: #60a5fa;
+}
+@keyframes btn-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
 /* ── Agent recommendation block ─────────────────────────── */
 .agent-rec {
     background: #0a1628;
