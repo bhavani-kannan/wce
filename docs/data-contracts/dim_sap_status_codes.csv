@@ -1,0 +1,26 @@
+STATUS_DOMAIN,STATUS_CODE,STATUS_LABEL,STATUS_DESCRIPTION,SYSTEM_MODULE,SAP_TABLE_OR_FIELD,ALLOWS_AUTO_CLEAR,AGENT_CAN_SET,NOTES
+FSCM_COLLECTION,01,Open,Collection item created. No outreach actioned yet.,SAP FSCM UDM,UDMCASE.CASE_STATUS,N,Y,Initial status when agent creates a collection item.
+FSCM_COLLECTION,02,In Process,Outreach active. Collector assigned. Follow-up scheduled.,SAP FSCM UDM,UDMCASE.CASE_STATUS,N,Y,Set by agent when CFO confirms collection action.
+FSCM_COLLECTION,03,Promise to Pay,Customer has confirmed a specific payment date.,SAP FSCM UDM,UDMCASE.CASE_STATUS,N,Y,Set when PROMISE_TO_PAY_DATE is recorded and confirmed by customer.
+FSCM_COLLECTION,04,Dispute,Invoice linked to an open dispute case. Payment withheld pending resolution.,SAP FSCM UDM,UDMCASE.CASE_STATUS,N,Y,Set concurrently with FSCM Dispute Management case creation.
+FSCM_COLLECTION,05,Closed,Payment received or case resolved (written off / dispute settled).,SAP FSCM UDM,UDMCASE.CASE_STATUS,Y,Y,Set by agent on payment confirmation detection. Triggers AR clearing.
+FSCM_DISPUTE,01,Open,Dispute case raised. Under investigation.,SAP FSCM UDM,UDMDISP.STATUS,N,Y,Created via UDM_DISPUTE T-code.
+FSCM_DISPUTE,02,In Process,Evidence being gathered. Owner assigned.,SAP FSCM UDM,UDMDISP.STATUS,N,Y,
+FSCM_DISPUTE,03,Resolved - Accepted,Company accepted customer's dispute claim. Credit memo to be raised.,SAP FSCM UDM,UDMDISP.STATUS,Y,N,Requires CFO authorisation before credit memo (FB75) is posted.
+FSCM_DISPUTE,04,Resolved - Rejected,Counter-evidence submitted. Customer must pay in full.,SAP FSCM UDM,UDMDISP.STATUS,N,N,Triggers formal counter-claim process.
+FSCM_DISPUTE,05,Closed,Dispute fully resolved and AR cleared.,SAP FSCM UDM,UDMDISP.STATUS,Y,Y,
+LEGAL_HOLD,DORMANT,Dormant,Pre-litigation hold created. Monitoring active. Not yet escalated.,Legal CMS,CASE.STATUS,N,Y,Agent can create holds in DORMANT status only. @LegalTeam owns status transitions.
+LEGAL_HOLD,ACTIVE,Active,Legal proceedings initiated. @LegalTeam in control.,Legal CMS,CASE.STATUS,N,N,AGENT CANNOT SET THIS STATUS. @LegalTeam only.
+LEGAL_HOLD,ESCALATED,Escalated to External Counsel,Case passed to external legal firm.,Legal CMS,CASE.STATUS,N,N,@LegalTeam only.
+APPROVAL_WF,PENDING,Pending Approval,WorkItem sent to approver. Awaiting response.,SAP Business Workflow,SWWWIHEAD.STATUS,N,Y,Agent creates WorkItem. Human approves in SAP inbox or Teams.
+APPROVAL_WF,APPROVED,Approved,Approver confirmed action. Agent proceeds to execution.,SAP Business Workflow,SWWWIHEAD.STATUS,N,N,Agent watches for this status to trigger next execution step.
+APPROVAL_WF,REJECTED,Rejected,Approver declined. Action blocked.,SAP Business Workflow,SWWWIHEAD.STATUS,N,N,Agent surfaces rejection in War Room and requests alternative instruction.
+DELIVERY_BLOCK,Z1,Credit Hold Block,Outbound delivery blocked due to credit hold.,SAP SD,LIKP.LIFSK,N,Y,Applied via VL02N at delivery header level. Removes when @RaviKumar releases via VKM1.
+CREDIT_STATUS,ACTIVE,Active,No credit blocks. Trading within terms.,SAP Credit Mgmt,KNKK.CTLPC,N,Y,Normal operating state.
+CREDIT_STATUS,UNDER_REVIEW,Under Review,Credit limit or risk category under reassessment.,SAP Credit Mgmt,KNKK.CTLPC,N,Y,Agent sets this when escalation initiated.
+CREDIT_STATUS,BLOCKED,Blocked,Credit limit set to $0. No new SOs accepted.,SAP Credit Mgmt,KNKK.KLIMK = 0,N,Y (stage only),Agent stages; human confirms in VKM1 / FD32.
+DUNNING_LEVEL,0,No Dunning,No dunning notice issued. Invoice within terms or newly overdue.,SAP AR,MHNK.MAHNS,N,N,
+DUNNING_LEVEL,1,First Reminder,Automated first reminder. Friendly tone.,SAP AR,MHNK.MAHNS,N,Y,Triggered at 15d overdue per ZAR01 procedure.
+DUNNING_LEVEL,2,Second Reminder,Escalated chase. Reference to potential consequences.,SAP AR,MHNK.MAHNS,N,Y,Triggered at 30d overdue.
+DUNNING_LEVEL,3,Final Notice,Formal final notice before legal. Registered post.,SAP AR,MHNK.MAHNS,N,Y,Triggered at 45d overdue.
+DUNNING_LEVEL,4,Pre-Legal Demand,Demand letter. CFO authorisation required. Interest accrues.,SAP AR,MHNK.MAHNS,N,N (CFO required),Triggered at 90d overdue. Agent proposes; CFO must authorise via approval workflow.

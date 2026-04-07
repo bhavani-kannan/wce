@@ -1,0 +1,6 @@
+ZTERM,DESCRIPTION,NET_DAYS,EARLY_PAY_DISCOUNT_PCT,EARLY_PAY_DISCOUNT_DAYS,LATE_INTEREST_APPLICABLE,SAP_CALENDAR,NOTES
+Z030,Net 30 Days,30,0.00,0,N,ZCAL01,Standard 30-day net terms. No early-pay discount. Most AR customers.
+Z045,Net 45 Days,45,0.00,0,N,ZCAL01,Extended terms for strategic accounts.
+Z060,Net 60 Days,60,0.00,0,N,ZCAL01,Extended 60-day terms. Used for Frosted Foods Co and large seasonal accounts.
+Z1510,1.5/10 Net 45,45,1.50,10,N,ZCAL01,AP vendor terms. Pay within 10 days = 1.5% discount. Otherwise net 45. Used for Summit Chemicals (AP-side).
+ZN30,Net 30 with Interest,30,0.00,0,Y,ZCAL01,Net 30 with late interest per contract clause 8.4. Applied on formal demand letters (dunning level 4).

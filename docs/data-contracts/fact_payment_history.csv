@@ -1,0 +1,41 @@
+MANDT,BUKRS,KUNNR,CUSTOMER_NAME,BELNR_CLEARED,XBLNR,BLDAT,DUE_DATE,CLEARING_DATE,DAYS_TO_PAY,DAYS_LATE,ON_TIME_FLAG,PAYMENT_AMOUNT,CURRENCY,PAYMENT_METHOD,BREACH_FLAG,NOTES
+100,1000,0000004821,Delta Retail Group,1900058240,INV-58240,2024-04-08,2024-05-08,2024-07-17,100,70,N,680000.00,USD,Wire,Y,70d late. Pattern establishes from first record in window.
+100,1000,0000004821,Delta Retail Group,1900060190,INV-60190,2024-06-12,2024-07-12,2024-09-16,96,66,N,720000.00,USD,Wire,Y,66d late. @RaviKumar sent 2 emails before payment.
+100,1000,0000004821,Delta Retail Group,1900062380,INV-62380,2024-08-05,2024-09-04,2024-11-24,111,81,N,810000.00,USD,Wire,Y,81d late. Escalation required. Pattern confirmed.
+100,1000,0000004821,Delta Retail Group,1900064110,INV-64110,2024-10-01,2024-10-31,2024-12-27,87,57,N,750000.00,USD,Wire,Y,57d late. Below 60d threshold this cycle but still a breach.
+100,1000,0000004821,Delta Retail Group,1900066290,INV-66290,2024-12-03,2025-01-02,2025-03-17,104,74,N,880000.00,USD,Wire,Y,74d late. No dispute. Consistent selective deprioritisation.
+100,1000,0000004821,Delta Retail Group,1900068150,INV-68150,2025-02-10,2025-03-12,2025-05-20,99,69,N,700000.00,USD,Wire,Y,69d late. 6 consecutive breaches at this point.
+100,1000,0000004821,Delta Retail Group,1900071204,INV-71204,2025-06-10,2025-07-10,2025-09-15,97,62,N,720000.00,USD,Wire,Y,62d late. 7th consecutive breach.
+100,1000,0000004821,Delta Retail Group,1900073188,INV-73188,2025-07-14,2025-08-13,2025-10-28,106,75,N,880000.00,USD,Wire,Y,75d late. 8th consecutive breach.
+100,1000,0000004821,Delta Retail Group,1900074902,INV-74902,2025-08-20,2025-09-19,2025-11-30,102,72,N,1050000.00,USD,Wire,Y,72d late. 9th consecutive breach.
+100,1000,0000004821,Delta Retail Group,1900076315,INV-76315,2025-10-01,2025-10-31,2026-01-20,111,81,N,960000.00,USD,Wire,Y,81d late. 10th consecutive breach. Pattern fully established: avg 71d late over 24 months.
+100,1000,0000007392,Orbis Tech Solutions,1900057890,INV-57890,2024-04-15,2024-05-15,2024-05-20,35,5,Y,400000.00,USD,ACH,N,5d late. Orbis was a reliable payer in early 2024. Benchmark period.
+100,1000,0000007392,Orbis Tech Solutions,1900059940,INV-59940,2024-06-20,2024-07-20,2024-07-30,40,10,Y,470000.00,USD,ACH,N,10d late. Still within acceptable range. No escalation.
+100,1000,0000007392,Orbis Tech Solutions,1900061780,INV-61780,2024-08-08,2024-09-07,2024-10-05,58,28,Y,520000.00,USD,ACH,N,28d late. First visible slippage. Still under breach threshold (30d).
+100,1000,0000007392,Orbis Tech Solutions,1900063410,INV-63410,2024-10-14,2024-11-13,2024-12-15,62,32,N,590000.00,USD,ACH,Y,32d late. First formal breach. @RaviKumar sent first reminder.
+100,1000,0000007392,Orbis Tech Solutions,1900065210,INV-65210,2025-02-12,2025-03-14,2025-04-15,62,32,N,540000.00,USD,ACH,Y,32d late. 2nd breach. Resolved after 1 email.
+100,1000,0000007392,Orbis Tech Solutions,1900069840,INV-69840,2025-05-08,2025-06-07,2025-07-25,78,48,N,710000.00,USD,ACH,Y,48d late. 3rd breach. Required 2 emails + phone call.
+100,1000,0000007392,Orbis Tech Solutions,1900072405,INV-72405,2025-07-20,2025-08-19,2025-10-22,94,64,N,820000.00,USD,ACH,Y,64d late. 4th breach. Pattern accelerating. Credit review triggered.
+100,1000,0000007392,Orbis Tech Solutions,1900076190,INV-76190,2025-11-01,2025-12-01,2026-02-27,118,88,N,800000.00,USD,ACH,Y,88d late. 5th breach (2nd consecutive breach at 60d+). Required 2 formal escalations. Previous escalation pattern now established.
+100,1000,0000009104,Pinnacle Foods Ltd,1900057200,INV-57200,2024-04-05,2024-05-05,2024-05-09,34,4,Y,350000.00,USD,Check,N,4d late. Reliable baseline payer.
+100,1000,0000009104,Pinnacle Foods Ltd,1900059610,INV-59610,2024-06-18,2024-07-18,2024-07-25,37,7,Y,310000.00,USD,Check,N,7d late. Within acceptable range.
+100,1000,0000009104,Pinnacle Foods Ltd,1900062010,INV-62010,2024-09-02,2024-10-02,2024-10-28,56,26,Y,280000.00,USD,Check,N,26d late. No dispute. Normal slip.
+100,1000,0000009104,Pinnacle Foods Ltd,1900064800,INV-64800,2024-11-12,2024-12-12,2025-01-05,54,24,N,290000.00,USD,Check,N,24d late. First dispute raised on this invoice (quantity claim - resolved via POD). NOTE: dispute delayed payment.
+100,1000,0000009104,Pinnacle Foods Ltd,1900068115,INV-68115,2025-04-05,2025-05-05,2025-05-12,37,7,Y,410000.00,USD,Check,N,7d late. Quick payment after dispute cycle resolved.
+100,1000,0000009104,Pinnacle Foods Ltd,1900070822,INV-70822,2025-06-18,2025-07-18,2025-07-29,41,11,Y,360000.00,USD,Check,N,11d late. Slight delay after dispute. Recovering to baseline.
+100,1000,0000009104,Pinnacle Foods Ltd,1900074200,INV-74200,2025-09-01,2025-10-01,2025-10-25,54,24,Y,290000.00,USD,Check,N,24d late. Dispute raised again (quantity claim pattern). Second occurrence - agent flags as recurring dispute type.
+100,1000,0000009104,Pinnacle Foods Ltd,1900077050,INV-77050,2025-11-10,2025-12-10,2026-01-28,79,49,N,580000.00,USD,Check,Y,49d late. Third dispute cycle delayed payment. Dispute pattern now in credit profile.
+100,1000,0000002156,Nexwave Retail Corp,1900058800,INV-58800,2024-04-20,2024-05-20,2024-05-22,32,2,Y,580000.00,USD,Wire,N,2d late. Reliable.
+100,1000,0000002156,Nexwave Retail Corp,1900061200,INV-61200,2024-07-08,2024-08-07,2024-08-10,33,3,Y,610000.00,USD,Wire,N,3d late.
+100,1000,0000002156,Nexwave Retail Corp,1900063900,INV-63900,2024-09-15,2024-10-15,2024-10-18,33,3,Y,690000.00,USD,Wire,N,3d late.
+100,1000,0000002156,Nexwave Retail Corp,1900066480,INV-66480,2025-03-20,2025-04-19,2025-04-22,33,3,Y,650000.00,USD,Wire,N,3d late. Self-pay. No chase required.
+100,1000,0000002156,Nexwave Retail Corp,1900070133,INV-70133,2025-06-01,2025-07-01,2025-07-02,31,1,Y,720000.00,USD,Wire,N,1d late. Essentially on time.
+100,1000,0000002156,Nexwave Retail Corp,1900073801,INV-73801,2025-09-14,2025-10-14,2025-10-18,34,4,Y,810000.00,USD,Wire,N,4d late. Consistent strong payer. 92% on-time rate verified.
+100,1000,0000002156,Nexwave Retail Corp,1900077290,INV-77290,2025-12-01,2025-12-31,2026-01-05,35,5,Y,760000.00,USD,Wire,N,5d late. Self-pay commitment received before chase.
+100,1000,0000005033,Brightline Corp,1900076800,INV-76800,2025-11-15,2025-12-15,2025-12-20,35,5,Y,280000.00,USD,ACH,N,First payment on record. 5d late. New customer - acceptable.
+100,1000,0000008811,Vertex Holdings LLC,1900059300,INV-59300,2024-06-05,2024-07-05,2024-07-08,33,3,Y,900000.00,USD,Wire,N,Reliable payer.
+100,1000,0000008811,Vertex Holdings LLC,1900062900,INV-62900,2024-09-10,2024-10-10,2024-10-12,32,2,Y,1050000.00,USD,Wire,N,Reliable payer.
+100,1000,0000008811,Vertex Holdings LLC,1900066600,INV-66600,2025-01-14,2025-02-13,2025-02-15,32,2,Y,980000.00,USD,Wire,N,Reliable.
+100,1000,0000008811,Vertex Holdings LLC,1900070400,INV-70400,2025-05-08,2025-06-07,2025-06-09,32,2,Y,1100000.00,USD,Wire,N,Reliable.
+100,1000,0000008811,Vertex Holdings LLC,1900074900,INV-74900,2025-09-20,2025-10-20,2025-10-23,33,3,Y,1100000.00,USD,Wire,N,Reliable.
+100,1000,0000008811,Vertex Holdings LLC,1900077800,INV-77800,2025-12-05,2026-01-04,2026-01-07,33,3,Y,980000.00,USD,Wire,N,Reliable.
